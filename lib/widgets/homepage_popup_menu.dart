@@ -4,7 +4,6 @@ import 'package:libadwaita/libadwaita.dart';
 import 'package:libadwaita_bitsdojo/libadwaita_bitsdojo.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class HomePagePpopupMenu extends StatelessWidget {
   const HomePagePpopupMenu({
     super.key,
@@ -20,27 +19,6 @@ class HomePagePpopupMenu extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          AdwButton.flat(
-            padding: AdwButton.defaultButtonPadding.copyWith(
-              top: 10,
-              bottom: 10,
-            ),
-            child: const Text(
-              '按钮1',
-              style: TextStyle(fontSize: 15),
-            ),
-          ),
-          const Divider(),
-          AdwButton.flat(
-            padding: AdwButton.defaultButtonPadding.copyWith(
-              top: 10,
-              bottom: 10,
-            ),
-            child: const Text(
-              '按钮2',
-              style: TextStyle(fontSize: 15),
-            ),
-          ),
           AdwButton.flat(
             padding: AdwButton.defaultButtonPadding.copyWith(
               top: 10,
@@ -67,8 +45,7 @@ class HomePagePpopupMenu extends StatelessWidget {
                           (e) => AdwActionRow(
                             title: e.key,
                             onActivated: () => launchUrl(
-                              Uri.parse(
-                                  'https://github.com/${e.value}'),
+                              Uri.parse('https://github.com/${e.value}'),
                             ),
                           ),
                         )

@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       darkTheme: AdwaitaThemeData.dark(),
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      home: HomePage(),
     );
   }
 }
