@@ -30,7 +30,7 @@ const adwSidebarChildrens = [
 final adwViewStackChildrens = [
   AllMusicPage(),
   const SearchPage(),
-  const SettingPage()
+  SettingPage()
 ];
 
 const developers = {

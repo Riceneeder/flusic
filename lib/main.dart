@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:adwaita/adwaita.dart';
 import 'package:libadwaita_bitsdojo/libadwaita_bitsdojo.dart';
+import 'package:global_configs/global_configs.dart';
 
 import 'pages/homepage.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await GlobalConfigs().loadJsonFromdir('asset/config.json');
   runApp(const MyApp());
 
   doWhenWindowReady(() {

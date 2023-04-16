@@ -18,15 +18,16 @@ class BaseMusicListItem extends StatelessWidget {
       key: Key(title),
       title: title,
       end: AdwButton(
-        backgroundColorBuilder: musicListItemButtonBackgroundColorBuilder,
+        backgroundColorBuilder: baseMusicListItemButtonBackgroundColorBuilder,
         child: const Icon(Icons.play_arrow),
+        //TODO
         onPressed: () => debugPrint('播放$title，音乐链接：$muiscUrl'),
       ),
     );
   }
 }
 
-Color? musicListItemButtonBackgroundColorBuilder(
+Color? baseMusicListItemButtonBackgroundColorBuilder(
   BuildContext context,
   Color? backgroundColor,
   AdwButtonStatus status, {

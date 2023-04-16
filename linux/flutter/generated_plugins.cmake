@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  audiotags
   bitsdojo_window_linux
   url_launcher_linux
 )

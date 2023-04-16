@@ -42,6 +42,9 @@ dependencies:
   libadwaita_bitsdojo: ^0.5.5
   url_launcher: ^6.1.10
   flutter_svg: ^1.1.6
+  file_picker: ^5.2.9
+  global_configs: ^1.1.2
+  audiotags: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +71,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - asset/yoyoos_logo.svg
+    - asset/config.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:libadwaita/libadwaita.dart';
+import 'package:get/get.dart';
+
+import '../controllers/config_controller.dart';
 
 //设置界面
 class SettingPage extends StatelessWidget {
-  const SettingPage({Key? key}) : super(key: key);
+  SettingPage({Key? key}) : super(key: key);
+
+  final settingController = Get.put(ConfigController());
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +19,15 @@ class SettingPage extends StatelessWidget {
             title: '音乐库',
             description: '本地音乐库地址',
             children: [
-              const AdwActionRow(
-                start: Icon(Icons.folder),
-                title: '/path/to/music/folder',
-              ),
+              Obx(() => AdwActionRow(
+                    start: const Icon(Icons.folder),
+                    title: settingController.localMusicFoldersPath.value,
+                  )),
               AdwActionRow(
                 title: '更改',
                 end: const Icon(Icons.chevron_right),
-                onActivated: () => debugPrint('选择本地音乐路径'),
+                onActivated: () =>
+                    settingController.changeAndSaveLocalMusicFoldersPath(),
               ),
             ],
           ),
@@ -33,7 +39,9 @@ class SettingPage extends StatelessWidget {
               AdwActionRow(
                 title: '登陆网易云音乐账户',
                 end: const Icon(Icons.chevron_right),
+                //TODO
                 onActivated: () => debugPrint('登陆网易云音乐账户'),
+                enabled: false,
               ),
               const AdwActionRow(
                 title: '登陆apple music',

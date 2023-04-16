@@ -1,18 +1,12 @@
 import "package:flutter/material.dart";
+import 'package:get/get.dart';
 import "package:libadwaita/libadwaita.dart";
 
 import '../widgets/base_music_list_item.dart';
 
 import '../models/BaseMusicInfo.dart';
 
-List<BaseMusicInfo> fakeMusicInfoDatas = <BaseMusicInfo>[
-  BaseMusicInfo.fromJson(
-      {"name": "Pascal", "url": "https://codegeex.cn", "dur": "2h 10m"}),
-  BaseMusicInfo.fromJson(
-      {"name": "The Sign", "url": "https://codegeex.cn", "dur": "2h 42s"}),
-  BaseMusicInfo.fromJson(
-      {"name": "The Sign", "url": "https://codegeex.cn", "dur": "2h 42m"})
-];
+import '../controllers/config_controller.dart';
 
 List<BaseMusicListItem> generateMusicListFromData(
     {required List<BaseMusicInfo> data}) {
@@ -28,27 +22,43 @@ List<BaseMusicListItem> generateMusicListFromData(
       muiscUrl: url,
     ));
   }
-  debugPrint('generateMusicListFromData');
-  debugPrint(list.toString());
   return list;
 }
 
 class AllMusicPage extends StatelessWidget {
   AllMusicPage({Key? key}) : super(key: key);
 
-  final List<BaseMusicListItem> musicList =
-      generateMusicListFromData(data: fakeMusicInfoDatas);
+  final allMusicPageController = Get.put(ConfigController());
 
   @override
   Widget build(BuildContext context) {
     return AdwClamp.scrollable(
       child: Column(
         children: [
-          AdwPreferencesGroup(
-            title: '本地音乐',
-            borderRadius: 5,
-            children: musicList,
-          )
+          Obx(() {
+            List<BaseMusicListItem> musicList = generateMusicListFromData(
+                data: allMusicPageController.musicInfoList);
+            if (musicList.isEmpty) {
+              return AdwPreferencesGroup(
+                title: '本地音乐',
+                borderRadius: 5,
+                children: [
+                  AdwActionRow(
+                    title: '没有搜索到本地音乐，重新选择文件夹',
+                    start: const Icon(Icons.wrong_location),
+                    end: const Icon(Icons.chevron_right),
+                    onActivated: () => allMusicPageController
+                        .changeAndSaveLocalMusicFoldersPath(),
+                  )
+                ],
+              );
+            }
+            return AdwPreferencesGroup(
+              title: '本地音乐',
+              borderRadius: 5,
+              children: musicList,
+            );
+          })
         ],
       ),
     );
