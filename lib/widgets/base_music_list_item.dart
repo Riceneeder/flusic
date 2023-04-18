@@ -2,39 +2,77 @@ import 'package:flutter/material.dart';
 import 'package:libadwaita/libadwaita.dart';
 
 class BaseMusicListItem extends StatelessWidget {
-  const BaseMusicListItem({
-    Key? key,
-    required this.title,
-    required this.duration,
-    required this.muiscUrl,
-  }) : super(key: key);
+  const BaseMusicListItem(
+      {Key? key,
+      required this.title,
+      required this.musicUrl,
+      this.isLocalMusic = true})
+      : super(key: key);
   final String title;
-  final String duration;
-  final String muiscUrl;
+  final String musicUrl;
+  final bool isLocalMusic;
 
   @override
   Widget build(BuildContext context) {
     return AdwActionRow(
-      key: Key(title),
       title: title,
-      end: AdwButton(
-        backgroundColorBuilder: baseMusicListItemButtonBackgroundColorBuilder,
-        child: const Icon(Icons.play_arrow),
-        //TODO
-        onPressed: () => debugPrint('播放$title，音乐链接：$muiscUrl'),
-      ),
+      end:
+          baseMusicListItemPopupMenu(url: musicUrl, isLocalMusic: isLocalMusic),
     );
   }
 }
 
-Color? baseMusicListItemButtonBackgroundColorBuilder(
-  BuildContext context,
-  Color? backgroundColor,
-  AdwButtonStatus status, {
-  bool opaque = false,
-}) {
-  if (status == AdwButtonStatus.enabledHovered) {
-    return context.hoverColor;
+Widget baseMusicListItemPopupMenu(
+    {required String url, required bool isLocalMusic}) {
+  if (!isLocalMusic) {
+    return ToggleButtons(
+      renderBorder: false,
+      borderRadius: const BorderRadius.all(Radius.circular(5)),
+      isSelected: const [false, false, false],
+      children: [
+        IconButton(
+          onPressed: () => debugPrint('播放：$url'),
+          icon: const Icon(
+            Icons.play_arrow,
+          ),
+          tooltip: '播放',
+        ),
+        IconButton(
+          onPressed: () => debugPrint('添加到播放列表：$url'),
+          icon: const Icon(
+            Icons.playlist_add,
+          ),
+          tooltip: '添加到播放列表',
+        ),
+        IconButton(
+          onPressed: () => debugPrint('下载：$url'),
+          icon: const Icon(
+            Icons.download,
+          ),
+          tooltip: '下载到库',
+        ),
+      ],
+    );
   }
-  return backgroundColor;
+  return ToggleButtons(
+    renderBorder: false,
+    borderRadius: const BorderRadius.all(Radius.circular(5)),
+    isSelected: const [false, false],
+    children: [
+      IconButton(
+        onPressed: () => debugPrint('播放：$url'),
+        icon: const Icon(
+          Icons.play_arrow,
+        ),
+        tooltip: '播放',
+      ),
+      IconButton(
+        onPressed: () => debugPrint('添加到播放列表：$url'),
+        icon: const Icon(
+          Icons.playlist_add,
+        ),
+        tooltip: '添加到播放列表',
+      ),
+    ],
+  );
 }

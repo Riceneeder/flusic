@@ -33,6 +33,18 @@ class SettingPage extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           AdwPreferencesGroup(
+            title: 'MPD',
+            description: 'MPD后端地址',
+            borderRadius: 7,
+            children: [
+              Obx(() => AdwTextField(
+                    initialValue: settingController.mpdPath.value,
+                    onSubmitted: settingController.changeAndSaveMpdPath,
+                  )),
+            ],
+          ),
+          const SizedBox(height: 12),
+          AdwPreferencesGroup(
             title: '互联网账户',
             description: '登陆互联网账户，获取云端数据',
             children: [

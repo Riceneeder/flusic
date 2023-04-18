@@ -5,12 +5,10 @@ class BaseMusicInfo {
   BaseMusicInfo({
     required this.name,
     required this.url,
-    required this.dur,
   });
 
-  String name;
-  String url;
-  String dur;
+  final String name;
+  final String url;
 
   factory BaseMusicInfo.fromRawJson(String str) =>
       BaseMusicInfo.fromJson(json.decode(str));
@@ -20,12 +18,10 @@ class BaseMusicInfo {
   factory BaseMusicInfo.fromJson(Map<String, dynamic> json) => BaseMusicInfo(
         name: json["name"],
         url: json["url"],
-        dur: json["dur"],
       );
 
   Map<String, dynamic> toJson() => {
         "name": name,
         "url": url,
-        "dur": dur,
       };
 }

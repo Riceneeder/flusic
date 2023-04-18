@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:global_configs/global_configs.dart';
 
@@ -13,18 +14,21 @@ final localMusicFoldersPathInConfig =
 
 class ConfigController extends GetxController {
   RxList<BaseMusicInfo> musicInfoList =
-      [BaseMusicInfo(name: 'loading......', url: 'url', dur: 'dur')].obs;
+      [BaseMusicInfo(name: 'loading......', url: 'url')].obs;
   RxString localMusicFoldersPath = localMusicFoldersPathInConfig.obs;
+  RxString mpdPath = '获取默认地址中<MPD后端地址:port>'.obs;
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
-    await getAduiosinfo(FilePickTools()
+    getAduiosinfo(FilePickTools()
             .getTargetFoldersPathFileList(localMusicFoldersPathInConfig))
         .then((value) => musicInfoList.value = value);
   }
 
-  void _refreshAllMusicPage() {
+  ///刷新本地音乐库界面
+  ///在更新音乐路径或者添加新音乐后使用
+  void refreshAllMusicPage() {
     getAduiosinfo(FilePickTools()
             .getTargetFoldersPathFileList(localMusicFoldersPath.value))
         .then((value) => musicInfoList.value = value);
@@ -35,6 +39,7 @@ class ConfigController extends GetxController {
   }
 
   //========setting page start
+  //(about local music folder path)
   void changeAndSaveLocalMusicFoldersPath() {
     FilePickTools().getTargetLocalFoldersPath.then((value) {
       if (!value.canceled) {
@@ -49,7 +54,13 @@ class ConfigController extends GetxController {
     GlobalConfigs().set('localMusicFoldersPath', localMusicFoldersPath);
     _saveAllConfigToFile(jsonEncode(GlobalConfigs().configs));
     this.localMusicFoldersPath.value = localMusicFoldersPath;
-    _refreshAllMusicPage();
+    refreshAllMusicPage();
   }
-  //=========end
+
+  //(about mpd path)
+  void changeAndSaveMpdPath(String newMpdPath) {
+    debugPrint('changeAndSaveMpdPath($newMpdPath)');
+    mpdPath.value = newMpdPath;
+  }
+  //=========setting page end
 }

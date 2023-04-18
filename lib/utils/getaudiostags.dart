@@ -14,7 +14,9 @@ Future<List<BaseMusicInfo>> getAduiosinfo(List<String> allFilePathList) async {
   for (var file in fileList) {
     Tag? tag = await AudioTags.read(file.path);
     aduiosinfo.add(BaseMusicInfo(
-        name: '${tag?.title}', url: file.path, dur: '${tag?.duration}'));
+      name: '${tag?.title} - ${tag?.artist}',
+      url: file.path,
+    ));
   }
   return aduiosinfo;
 }

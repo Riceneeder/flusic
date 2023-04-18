@@ -8,23 +8,6 @@ import '../models/BaseMusicInfo.dart';
 
 import '../controllers/config_controller.dart';
 
-List<BaseMusicListItem> generateMusicListFromData(
-    {required List<BaseMusicInfo> data}) {
-  List<BaseMusicListItem> list = <BaseMusicListItem>[];
-  for (int i = 0; i < data.length; i++) {
-    final dataAtI = data[i];
-    final String name = dataAtI.name;
-    final String url = dataAtI.url;
-    final String dur = dataAtI.dur;
-    list.add(BaseMusicListItem(
-      title: name,
-      duration: dur,
-      muiscUrl: url,
-    ));
-  }
-  return list;
-}
-
 class AllMusicPage extends StatelessWidget {
   AllMusicPage({Key? key}) : super(key: key);
 
@@ -41,6 +24,7 @@ class AllMusicPage extends StatelessWidget {
             if (musicList.isEmpty) {
               return AdwPreferencesGroup(
                 title: '本地音乐',
+                description: allMusicPageController.localMusicFoldersPath.value,
                 borderRadius: 5,
                 children: [
                   AdwActionRow(
@@ -55,6 +39,7 @@ class AllMusicPage extends StatelessWidget {
             }
             return AdwPreferencesGroup(
               title: '本地音乐',
+              description: allMusicPageController.localMusicFoldersPath.value,
               borderRadius: 5,
               children: musicList,
             );
@@ -63,4 +48,19 @@ class AllMusicPage extends StatelessWidget {
       ),
     );
   }
+}
+
+List<BaseMusicListItem> generateMusicListFromData(
+    {required List<BaseMusicInfo> data}) {
+  List<BaseMusicListItem> list = <BaseMusicListItem>[];
+  for (int i = 0; i < data.length; i++) {
+    final dataAtI = data[i];
+    final String name = dataAtI.name;
+    final String url = dataAtI.url;
+    list.add(BaseMusicListItem(
+      title: name,
+      musicUrl: url,
+    ));
+  }
+  return list;
 }
