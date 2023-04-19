@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import 'package:get/get.dart';
 import "package:libadwaita/libadwaita.dart";
 
-import '../widgets/base_music_list_item.dart';
+import '../widgets/music_lib_list_item.dart';
 
 import '../models/BaseMusicInfo.dart';
 
@@ -19,7 +19,7 @@ class AllMusicPage extends StatelessWidget {
       child: Column(
         children: [
           Obx(() {
-            List<BaseMusicListItem> musicList = generateMusicListFromData(
+            List<MusicLibListItem> musicList = generateMusicListFromData(
                 data: allMusicPageController.musicInfoList);
             if (musicList.isEmpty) {
               return AdwPreferencesGroup(
@@ -50,14 +50,14 @@ class AllMusicPage extends StatelessWidget {
   }
 }
 
-List<BaseMusicListItem> generateMusicListFromData(
+List<MusicLibListItem> generateMusicListFromData(
     {required List<BaseMusicInfo> data}) {
-  List<BaseMusicListItem> list = <BaseMusicListItem>[];
+  List<MusicLibListItem> list = <MusicLibListItem>[];
   for (int i = 0; i < data.length; i++) {
     final dataAtI = data[i];
     final String name = dataAtI.name;
     final String url = dataAtI.url;
-    list.add(BaseMusicListItem(
+    list.add(MusicLibListItem(
       title: name,
       musicUrl: url,
     ));

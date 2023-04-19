@@ -7,6 +7,7 @@ import '../controllers/homepage_controller.dart';
 import '../controllers/config_controller.dart';
 
 import '../widgets/homepage_popup_menu.dart';
+import '../widgets/global_player.dart';
 
 import 'allmusicpage.dart';
 import 'searchpage.dart';
@@ -16,12 +17,12 @@ import 'mpdpage.dart';
 //侧边栏
 const adwSidebarChildrens = [
   AdwSidebarItem(
-    leading: Icon(Icons.library_music_rounded),
-    label: '乐库',
-  ),
-  AdwSidebarItem(
     leading: Icon(Icons.play_circle_rounded),
     label: 'MPD',
+  ),
+  AdwSidebarItem(
+    leading: Icon(Icons.library_music_rounded),
+    label: '乐库',
   ),
   AdwSidebarItem(
     leading: Icon(Icons.search_rounded),
@@ -34,8 +35,8 @@ const adwSidebarChildrens = [
 ];
 //侧边栏路由数组
 final adwViewStackChildrens = [
-  AllMusicPage(),
   const MpdPage(),
+  AllMusicPage(),
   const SearchPage(),
   SettingPage()
 ];
@@ -67,7 +68,13 @@ class HomePage extends StatelessWidget {
           ],
           end: [
             AdwHeaderButton(
-                onPressed: configController.refreshAllMusicPage,
+                onPressed: () {
+                  configController.refreshAllMusicPage();
+                  const GetSnackBar(
+                    message: '刷新乐库和MPD状态',
+                    duration: Duration(seconds: 2),
+                  ).show();
+                },
                 icon: const Icon(Icons.refresh_rounded)),
             const HomePagePpopupMenu(developers: developers),
           ],
@@ -83,6 +90,7 @@ class HomePage extends StatelessWidget {
             index: homepagecontroller.currentIndex.value,
             children: adwViewStackChildrens,
           ),
+          title: GlobalPlayer(),
         ));
   }
 }

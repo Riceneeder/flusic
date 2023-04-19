@@ -3,12 +3,14 @@ import 'package:libadwaita/libadwaita.dart';
 import 'package:get/get.dart';
 
 import '../controllers/config_controller.dart';
+import '../controllers/mpd_controller.dart';
 
 //设置界面
 class SettingPage extends StatelessWidget {
   SettingPage({Key? key}) : super(key: key);
 
   final settingController = Get.put(ConfigController());
+  final mpdController = Get.put(MpdController());
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,8 @@ class SettingPage extends StatelessWidget {
             borderRadius: 7,
             children: [
               Obx(() => AdwTextField(
-                    initialValue: settingController.mpdPath.value,
+                    initialValue: mpdController.mpdHostPort.value,
+                    //TODO 更改mpd后端地址
                     onSubmitted: settingController.changeAndSaveMpdPath,
                   )),
             ],

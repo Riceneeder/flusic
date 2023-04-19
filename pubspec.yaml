@@ -1,5 +1,5 @@
-name: templates
-description: A new flutter adwaita templates.
+name: flusic
+description: A linux MPD player made with flutter
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -45,6 +45,7 @@ dependencies:
   file_picker: ^5.2.9
   global_configs: ^1.1.2
   audiotags: ^1.1.1
+  dart_mpd: ^0.1.2
 
 dev_dependencies:
   flutter_test:

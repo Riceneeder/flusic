@@ -45,12 +45,12 @@ class ConfigController extends GetxController {
       if (!value.canceled) {
         localMusicFoldersPath.value = value.path;
         // 储存到本地配置文件中
-        localMusicFoldersPathToConfigFile = value.path;
+        _localMusicFoldersPathToConfigFile = value.path;
       }
     });
   }
 
-  set localMusicFoldersPathToConfigFile(String localMusicFoldersPath) {
+  set _localMusicFoldersPathToConfigFile(String localMusicFoldersPath) {
     GlobalConfigs().set('localMusicFoldersPath', localMusicFoldersPath);
     _saveAllConfigToFile(jsonEncode(GlobalConfigs().configs));
     this.localMusicFoldersPath.value = localMusicFoldersPath;

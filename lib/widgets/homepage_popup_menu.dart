@@ -52,7 +52,7 @@ class HomePagePpopupMenu extends StatelessWidget {
                         .toList(),
                   ),
                 ],
-                copyright: 'Copyright 2021-2022',
+                copyright: 'Copyright 2023',
                 license: const Text(
                   'GNU LGPL-3.0, This program comes with no warranty.',
                 ),

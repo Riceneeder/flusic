@@ -153,6 +153,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  dart_mpd:
+    dependency: "direct main"
+    description:
+      name: dart_mpd
+      sha256: "7a0e6c76b00edc38937f8b93de8001d1204ab3f29aed7fe88207771da129e972"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.2"
   dbus:
     dependency: transitive
     description:
@@ -240,6 +248,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  freezed_annotation:
+    dependency: transitive
+    description:
+      name: freezed_annotation
+      sha256: aeac15850ef1b38ee368d4c53ba9a847e900bb2c53a4db3f6881cbb3cb684338
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
   gato:
     dependency: transitive
     description:
@@ -296,6 +312,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.5"
+  json_annotation:
+    dependency: transitive
+    description:
+      name: json_annotation
+      sha256: c33da08e136c3df0190bd5bbe51ae1df4a7d96e7954d1d7249fea2968a72d317
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.8.0"
   libadwaita:
     dependency: "direct main"
     description:
