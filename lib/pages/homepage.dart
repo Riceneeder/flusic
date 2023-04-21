@@ -35,7 +35,7 @@ const adwSidebarChildrens = [
 ];
 //侧边栏路由数组
 final adwViewStackChildrens = [
-  const MpdPage(),
+  MpdPage(),
   AllMusicPage(),
   const SearchPage(),
   SettingPage()
