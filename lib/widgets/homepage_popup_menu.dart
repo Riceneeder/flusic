@@ -29,7 +29,7 @@ class HomePagePpopupMenu extends StatelessWidget {
               builder: (ctx) => AdwAboutWindow(
                 issueTrackerLink: 'https://github.com/riceneeder',
                 appIcon: SvgPicture.asset(
-                  'asset/yoyoos_logo.svg',
+                  'asset/icon.svg',
                   height: 100,
                 ),
                 actions: AdwActions(
