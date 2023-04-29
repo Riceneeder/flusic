@@ -46,6 +46,7 @@ dependencies:
   global_configs: ^1.1.2
   audiotags: ^1.1.1
   dart_mpd: ^0.1.2
+  sleek_circular_slider: ^2.0.1
 
 dev_dependencies:
   flutter_test:

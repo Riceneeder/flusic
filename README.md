@@ -8,7 +8,7 @@
 
 首先本机安装mpd并启动，参考[Music Player Daemon - ArchWiki - Arch Linux](https://wiki.archlinuxcn.org/wiki/Music_Player_Daemon)
 
-> mpd请勿设置访问密码
+> mpd请勿设置访问密码，使用本地mpd时请通过socket连接以添加本地任何路径的音乐
 
 下载本程序并启动
 
@@ -16,7 +16,7 @@
 
 - [x] 本机mpd控制
 - [ ] 网络mpd控制
-- [ ] mpd信息获取展示
+- [x] mpd信息获取展示
 - [x] 获取本机指定文件夹音乐
 - [ ] 获取网络账户音乐
 - [x] 添加本地音乐到播放列表并播放

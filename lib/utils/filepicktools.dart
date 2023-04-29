@@ -27,7 +27,7 @@ class FilePickTools {
     List<FileSystemEntity> allFileList = directory.listSync(recursive: true);
     List<String> allFilePathList = [];
     for (var file in allFileList) {
-      if (file.statSync().type == FileSystemEntityType.file && file.path.endsWith('.mp3')) {
+      if (file.statSync().type == FileSystemEntityType.file && (file.path.endsWith('.mp3') || file.path.endsWith('.flac'))) {
         allFilePathList.add(file.path);
       }
     }

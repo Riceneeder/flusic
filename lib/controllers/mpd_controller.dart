@@ -38,7 +38,7 @@ class MpdController extends GetxController {
       onDone: () => isConnected.value = false,
     );
     mpdHostPort.value =
-        '${MpdConnectionDetails.resolve().host}:${MpdConnectionDetails.resolve().port}';
+        '${MpdConnectionDetails.resolve().host}${MpdConnectionDetails.resolve().port != 0 ? ':${MpdConnectionDetails.resolve().port}' : ''}';
     _getMpdStatusNow();
   }
 

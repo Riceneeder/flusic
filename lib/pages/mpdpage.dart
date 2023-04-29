@@ -2,6 +2,7 @@ import 'package:dart_mpd/dart_mpd.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import "package:libadwaita/libadwaita.dart";
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 import '../controllers/mpd_controller.dart';
 import '../widgets/music_playlist_item.dart';
@@ -22,20 +23,35 @@ class MpdPage extends StatelessWidget {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(() {
-                        final d = Duration(
-                            minutes: mpdController.currentSongCurrentTime.value
-                                .minutes.inMinutes);
-                        List<String> p = d.toString().split(':');
-                        return '${p[0]}:${p[1]}';
-                      }()),
-                      Text(() {
-                        final d = Duration(
-                            minutes: mpdController
-                                .currentSongDuration.value.minutes.inMinutes);
-                        List<String> p = d.toString().split(':');
-                        return '${p[0]}:${p[1]}';
-                      }()),
+                      SleekCircularSlider(
+                        appearance: CircularSliderAppearance(
+                          angleRange: 360,
+                          customColors: CustomSliderColors(
+                              hideShadow: true,
+                              progressBarColor: Theme.of(context).primaryColor),
+                        ),
+                        min: 0,
+                        max: 100,
+                        initialValue: ((mpdController
+                                            .currentSongCurrentTime.value /
+                                        mpdController
+                                            .currentSongDuration.value *
+                                        100) >=
+                                    0 &&
+                                (mpdController.currentSongCurrentTime.value /
+                                        mpdController
+                                            .currentSongDuration.value *
+                                        100) <=
+                                    100)
+                            ? mpdController.currentSongCurrentTime.value /
+                                mpdController.currentSongDuration.value *
+                                100
+                            : 0,
+                        onChange: (value) => mpdController.seek((value /
+                                100 *
+                                mpdController.currentSongDuration.value)
+                            .toString()),
+                      ),
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
