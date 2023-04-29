@@ -27,7 +27,7 @@ class HomePagePpopupMenu extends StatelessWidget {
             onPressed: () => showDialog<Widget>(
               context: context,
               builder: (ctx) => AdwAboutWindow(
-                issueTrackerLink: 'https://github.com/riceneeder',
+                issueTrackerLink: 'https://github.com/Riceneeder/flusic/issues',
                 appIcon: SvgPicture.asset(
                   'asset/icon.svg',
                   height: 100,

@@ -42,7 +42,7 @@ final adwViewStackChildrens = [
 ];
 
 const developers = {
-  'Riceneeder': 'riceneeder',
+  'Riceneeder': 'Riceneeder',
 };
 
 class HomePage extends StatelessWidget {
